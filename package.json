@@ -1,7 +1,7 @@
 {
   "name": "esrol-servers",
   "description": "Later",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.js",
   "author": "Ivaylo Ivanov <Ivchoyyyy@gmail.com>",
   "repository": {
