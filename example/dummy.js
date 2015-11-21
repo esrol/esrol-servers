@@ -7,11 +7,17 @@ let tcpRouter = function(socket) {
   socket.write('hello');
   socket.end(); 
 };
+let udpRouter = function(msf, info) {
+  console.log(msf.toString());
+};
 let onHttpServerListening = function() {
   console.log('http server is listening');
 };
 let onTcpServerListening = function() {
   console.log('tcp server is listening');
+};
+let onUdpServerListening = function() {
+  console.log('udp server is listening');
 };
 let onHttpWebSocketConnection = function(socket) {
   console.log ('http webSocket connected');  
@@ -33,8 +39,16 @@ let tcpOptions = {
   allowHalfOpen: false,
   pauseOnConnect: false  
 };
+let udpSettings = {
+  type: 'udp4',
+  port: 3335,
+  cluster: true,
+  router: udpRouter,
+  onListening: onUdpServerListening
+};
 let httpServer = Servers.createHttpServer(httpSettings);
 let tcpServer = Servers.createTcpServer(tcpSettings, tcpOptions);
+let udpServer = Servers.createUdpServer(udpSettings);
 let httpWebSocket = Servers.createHttpWebSocket(httpServer);
 httpWebSocket.on('connection', onHttpWebSocketConnection);
 Servers.cluster(4); // number of cores
