@@ -1,5 +1,5 @@
 'use strict';
-let Servers = require('../index.js');
+let Servers = require('esrol-servers');
 let httpRouter = function(req, res) {
   res.end('hello');
 };
