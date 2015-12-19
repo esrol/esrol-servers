@@ -1,11 +1,11 @@
 'use strict';
 let Servers = require('../index.js');
 let httpRouter = function(req, res) {
-  res.end('hello'); 
+  res.end('hello');
 };
 let tcpRouter = function(socket) {
   socket.write('hello');
-  socket.end(); 
+  socket.end();
 };
 let udpRouter = function(msf, info) {
   console.log(msf.toString());
@@ -20,7 +20,7 @@ let onUdpServerListening = function() {
   console.log('udp server is listening');
 };
 let onHttpWebSocketConnection = function(socket) {
-  console.log ('http webSocket connected');  
+  console.log ('http webSocket connected');
 };
 let httpSettings = {
   router: httpRouter,
@@ -28,7 +28,7 @@ let httpSettings = {
   port: 3333,
   webSocket: true,
   cluster: true
-}; 
+};
 let tcpSettings = {
   port: 3334,
   cluster: true,
@@ -37,7 +37,7 @@ let tcpSettings = {
 };
 let tcpOptions = {
   allowHalfOpen: false,
-  pauseOnConnect: false  
+  pauseOnConnect: false
 };
 let udpSettings = {
   type: 'udp4',
