@@ -10,21 +10,21 @@ let tcpRouter = function(socket) {
 let udpRouter = function(msf, info) {
   console.log(msf.toString());
 };
-let onHttpServerListening = function() {
+let onHTTPServerListening = function() {
   console.log('http server is listening');
 };
-let onTcpServerListening = function() {
+let onTCPServerListening = function() {
   console.log('tcp server is listening');
 };
-let onUdpServerListening = function() {
+let onUDPServerListening = function() {
   console.log('udp server is listening');
 };
-let onHttpWebSocketConnection = function(socket) {
+let onHTTPWebSocketConnection = function(socket) {
   console.log ('http webSocket connected');
 };
 let httpSettings = {
   router: httpRouter,
-  onListening: onHttpServerListening,
+  onListening: onHTTPServerListening,
   port: 3333,
   webSocket: true,
   cluster: true
@@ -33,7 +33,7 @@ let tcpSettings = {
   port: 3334,
   cluster: true,
   router: tcpRouter,
-  onListening: onTcpServerListening
+  onListening: onTCPServerListening
 };
 let tcpOptions = {
   allowHalfOpen: false,
@@ -44,18 +44,17 @@ let udpSettings = {
   port: 3335,
   cluster: true,
   router: udpRouter,
-  onListening: onUdpServerListening
+  onListening: onUDPServerListening
 };
-let httpServer = Servers.createHttpServer(httpSettings);
-let tcpServer = Servers.createTcpServer(tcpSettings, tcpOptions);
-let udpServer = Servers.createUdpServer(udpSettings);
-let httpWebSocket = Servers.createHttpWebSocket(httpServer);
-httpWebSocket.on('connection', onHttpWebSocketConnection);
+let httpServer = Servers.createHTTPServer(httpSettings);
+let tcpServer = Servers.createTCPServer(tcpSettings, tcpOptions);
+let udpServer = Servers.createUDPServer(udpSettings);
+let httpWebSocket = Servers.createHTTPWebSocket(httpServer);
+httpWebSocket.on('connection', onHTTPWebSocketConnection);
 Servers.cluster(4); // number of cores
 
-if (Servers.isMaster()) {
+if (Servers.isMaster) {
   console.log('master');
 } else {
   console.log('slave');
 }
-
