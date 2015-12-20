@@ -41,7 +41,7 @@ if (cluster.isMaster) {
           cluster: false,
           router(req, res) {
             res.end('success');
-          },
+          }
         };
         let httpServer = Servers.createHTTPServer(httpSettings);
         httpServer.on('listening', () => {
@@ -63,7 +63,7 @@ if (cluster.isMaster) {
           cluster: false,
           router(req, res) {
             res.end('success');
-          },
+          }
         };
         Servers.createHTTPServer(httpSettings);
         Servers.getHTTPServerInstance().on('listening', () => {
@@ -85,7 +85,7 @@ if (cluster.isMaster) {
           cluster: false,
           router(req, res) {
             res.end('success');
-          },
+          }
         };
         Servers.createHTTPServer(httpSettings);
         Servers.getHTTPServerInstance().on('listening', () => {

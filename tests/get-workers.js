@@ -8,8 +8,8 @@ require('mocha-sinon');
 if (cluster.isMaster) {
   describe('API "getWorkers"', () => {
     describe('Get workers number through the API - "getWorkers"', () => {
-      it('Should return "2" - all tests are with 2 cpus', () => {
-        expect(Servers.getWorkers().length).to.equal(2);
+      it('Should not be "0", since we have multiple cluster tests', () => {
+        expect(Servers.getWorkers().length).to.not.equal(0);
       });
     });
   });

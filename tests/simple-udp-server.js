@@ -21,9 +21,9 @@ if (cluster.isMaster) {
             done();
           },
           onListening() {
-            let client = dgram.createSocket("udp4");
+            let client = dgram.createSocket('udp4');
             let message = 'success';
-            client.send(message, 0, message.length, 5444, "localhost");
+            client.send(message, 0, message.length, 5444, 'localhost');
           }
         };
         let udpServer = Servers.createUDPServer(udpSettings);
@@ -45,9 +45,9 @@ if (cluster.isMaster) {
         };
         let udpServer = Servers.createUDPServer(udpSettings);
         udpServer.on('listening', () => {
-          let client = dgram.createSocket("udp4");
+          let client = dgram.createSocket('udp4');
           let message = 'success';
-          client.send(message, 0, message.length, 5445, "localhost");
+          client.send(message, 0, message.length, 5445, 'localhost');
         });
       });
     });
@@ -67,9 +67,9 @@ if (cluster.isMaster) {
         };
         Servers.createUDPServer(udpSettings);
         Servers.getUDPServerInstance().on('listening', () => {
-          let client = dgram.createSocket("udp4");
+          let client = dgram.createSocket('udp4');
           let message = 'success';
-          client.send(message, 0, message.length, 5446, "localhost");
+          client.send(message, 0, message.length, 5446, 'localhost');
         });
       });
     });
@@ -90,9 +90,9 @@ if (cluster.isMaster) {
         };
         Servers.createUDPServer(udpSettings);
         Servers.getUDPServerInstance().on('listening', () => {
-          let client = dgram.createSocket("udp4");
+          let client = dgram.createSocket('udp4');
           let message = 'success';
-          client.send(message, 0, message.length, 5447, "localhost");
+          client.send(message, 0, message.length, 5447, 'localhost');
         });
       });
     });
