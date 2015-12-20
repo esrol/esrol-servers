@@ -1,7 +1,6 @@
 'use strict';
 let expect = require('chai').expect;
 let Servers = require('../index.js');
-let mocks = require ('./mocks/index');
 let cluster = require('cluster');
 var net = require('net');
 
@@ -15,11 +14,11 @@ describe('TCP cluster', () => {
       let tcpSettings = {
         port: 4444,
         cluster: true,
-        router: (socket) => {
+        router(socket) {
           socket.write('success');
           socket.end();
         },
-        onListening: () => {
+        onListening() {
           var client = net.connect({port: 4444});
           client.on('data', function(data) {
             expect(data.toString()).to.equal('success');
@@ -29,7 +28,7 @@ describe('TCP cluster', () => {
           });
         }
       };
-      let tcpServer = Servers.createTcpServer(tcpSettings);
+      let tcpServer = Servers.createTCPServer(tcpSettings);
       cluster.on('message', () => {
         if (!finished) {
           done();

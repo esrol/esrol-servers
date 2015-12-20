@@ -1,7 +1,6 @@
 'use strict';
 let expect = require('chai').expect;
 let Servers = require('../index.js');
-let mocks = require ('./mocks/index');
 let request = require('request');
 let cluster = require('cluster');
 
@@ -15,10 +14,10 @@ describe('HTTP cluster', () => {
     it(should, (done) => {
       let finished = false;
       let httpSettings = {
-        router: (req, res) => {
+        router(req, res) {
           res.end('success');
         },
-        onListening: () => {
+        onListening() {
           request('http://localhost:3333', (err, response) => {
             expect(response.body).to.equal('success');
             httpServer.close();
@@ -36,7 +35,7 @@ describe('HTTP cluster', () => {
           finished = true;
         }
       });
-      let httpServer = Servers.createHttpServer(httpSettings);
+      let httpServer = Servers.createHTTPServer(httpSettings);
       Servers.cluster(2);
     });
   });

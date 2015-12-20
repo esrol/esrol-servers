@@ -1,7 +1,6 @@
 'use strict';
 let expect = require('chai').expect;
 let Servers = require('../index.js');
-let mocks = require ('./mocks/index');
 let cluster = require('cluster');
 var net = require('net');
 
@@ -15,11 +14,11 @@ if (cluster.isMaster) {
         let tcpSettings = {
           port: 4444,
           cluster: false,
-          router: (socket) => {
+          router(socket) {
             socket.write('success');
             socket.end();
           },
-          onListening: () => {
+          onListening() {
             var client = net.connect({port: 4444});
             client.on('data', function(data) {
               expect(data.toString()).to.equal('success');
@@ -28,7 +27,7 @@ if (cluster.isMaster) {
             });
           }
         };
-        let tcpServer = Servers.createTcpServer(tcpSettings);
+        let tcpServer = Servers.createTCPServer(tcpSettings);
       });
     });
 
@@ -38,12 +37,12 @@ if (cluster.isMaster) {
         let tcpSettings = {
           port: 4445,
           cluster: false,
-          router: (socket) => {
+          router(socket) {
             socket.write('success');
             socket.end();
           }
         };
-        let tcpServer = Servers.createTcpServer(tcpSettings);
+        let tcpServer = Servers.createTCPServer(tcpSettings);
         tcpServer.on('listening', () => {
           var client = net.connect({port: 4445});
           client.on('data', function(data) {
@@ -61,21 +60,22 @@ if (cluster.isMaster) {
         let tcpSettings = {
           port: 4446,
           cluster: false,
-          router: (socket) => {
+          router(socket) {
             socket.write('success');
             socket.end();
           }
         };
-        Servers.createTcpServer(tcpSettings);
-        Servers.getTcpServerInstance().on('listening', () => {
+        Servers.createTCPServer(tcpSettings);
+        Servers.getTCPServerInstance().on('listening', () => {
           var client = net.connect({port: 4446});
           client.on('data', function(data) {
             expect(data.toString()).to.equal('success');
-            Servers.getTcpServerInstance().close();
+            Servers.getTCPServerInstance().close();
             done();
           });
         });
       });
+
     });
 
     describe('Get the tcp server port through the api', () => {
@@ -84,18 +84,18 @@ if (cluster.isMaster) {
         let tcpSettings = {
           port: 4447,
           cluster: false,
-          router: (socket) => {
+          router(socket) {
             socket.write('success');
             socket.end();
           }
         };
-        Servers.createTcpServer(tcpSettings);
-        Servers.getTcpServerInstance().on('listening', () => {
+        Servers.createTCPServer(tcpSettings);
+        Servers.getTCPServerInstance().on('listening', () => {
           var client = net.connect({port: 4447});
           client.on('data', function(data) {
             expect(data.toString()).to.equal('success');
-            expect(Servers.getTcpServerPort()).to.equal(4447);
-            Servers.getTcpServerInstance().close();
+            expect(Servers.getTCPServerPort()).to.equal(4447);
+            Servers.getTCPServerInstance().close();
             done();
           });
         });
@@ -105,33 +105,34 @@ if (cluster.isMaster) {
   });
 
   describe('TCP fail', () => {
-    let should = 'Throw an error';
+    let should = 'Should throw an error';
 
-    describe('Passing a non object as argument to "createTcpServer"', () => {
+    describe('Passing a non object as argument to "createTCPServer"', () => {
       it(should, () => {
         expect(() => {
-          Servers.createTcpServer(undefined);
+          Servers.createTCPServer(undefined);
         }).to.throw(Error);
       });
     });
 
-    let desPort = `Passing object without port property to "createTcpServer"`;
+    let desPort = `Passing object without port property to "createTCPServer"`;
     describe(desPort, () => {
       it(should, () => {
         expect(() => {
-          Servers.createTcpServer({});
+          Servers.createTCPServer({});
         }).to.throw(Error);
       });
     });
 
-    let desRouter = `Passing object without router property to "createTcpServer"`;
+    let desRouter = `Passing {} without router property to "createTCPServer"`;
     describe(desRouter, () => {
       it(should, () => {
         expect(() => {
-          Servers.createTcpServer({port: 4448});
+          Servers.createTCPServer({port: 4448});
         }).to.throw(Error);
       });
     });
 
   });
+
 }
