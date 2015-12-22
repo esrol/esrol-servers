@@ -2,7 +2,7 @@
 let expect = require('chai').expect;
 let Servers = require('../index.js');
 let cluster = require('cluster');
-var net = require('net');
+let net = require('net');
 
 require('mocha-sinon');
 
@@ -19,7 +19,7 @@ describe('TCP cluster', () => {
           socket.end();
         },
         onListening() {
-          var client = net.connect({port: 4444});
+          let client = net.connect({port: 4444});
           client.on('data', function(data) {
             expect(data.toString()).to.equal('success');
             tcpServer.close();

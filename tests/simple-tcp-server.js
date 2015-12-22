@@ -2,7 +2,7 @@
 let expect = require('chai').expect;
 let Servers = require('../index.js');
 let cluster = require('cluster');
-var net = require('net');
+let net = require('net');
 
 require('mocha-sinon');
 
@@ -19,7 +19,7 @@ if (cluster.isMaster) {
             socket.end();
           },
           onListening() {
-            var client = net.connect({port: 4444});
+            let client = net.connect({port: 4444});
             client.on('data', function(data) {
               expect(data.toString()).to.equal('success');
               tcpServer.close();
@@ -44,7 +44,7 @@ if (cluster.isMaster) {
         };
         let tcpServer = Servers.createTCPServer(tcpSettings);
         tcpServer.on('listening', () => {
-          var client = net.connect({port: 4445});
+          let client = net.connect({port: 4445});
           client.on('data', function(data) {
             expect(data.toString()).to.equal('success');
             tcpServer.close();
@@ -67,7 +67,7 @@ if (cluster.isMaster) {
         };
         Servers.createTCPServer(tcpSettings);
         Servers.getTCPServerInstance().on('listening', () => {
-          var client = net.connect({port: 4446});
+          let client = net.connect({port: 4446});
           client.on('data', function(data) {
             expect(data.toString()).to.equal('success');
             Servers.getTCPServerInstance().close();
@@ -91,7 +91,7 @@ if (cluster.isMaster) {
         };
         Servers.createTCPServer(tcpSettings);
         Servers.getTCPServerInstance().on('listening', () => {
-          var client = net.connect({port: 4447});
+          let client = net.connect({port: 4447});
           client.on('data', function(data) {
             expect(data.toString()).to.equal('success');
             expect(Servers.getTCPServerPort()).to.equal(4447);

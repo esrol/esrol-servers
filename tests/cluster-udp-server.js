@@ -2,7 +2,7 @@
 let expect = require('chai').expect;
 let Servers = require('../index.js');
 let cluster = require('cluster');
-var dgram = require('dgram');
+let dgram = require('dgram');
 
 require('mocha-sinon');
 
