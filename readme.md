@@ -149,7 +149,7 @@ if (Servers.isMaster) {
 <a name="API"></a>
 ## API
 <a name="new_API_new"></a>
-A API Static Class for esrol-servers.
+AN API Static Class for esrol-servers.
 A wrapper for all esrol-servers components. Create and retrieve all
 supported servers and trigger cluster mode
 
