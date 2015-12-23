@@ -5,6 +5,8 @@
 # esrol-servers
 A wrapper for creating single / multiple server types (http, udp, websocket) with or without node cluster.
 
+*Part of [Esrol](https://github.com/esrol/esrol)*
+
 ## Installation
 
 ```sh

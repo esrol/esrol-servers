@@ -1,7 +1,7 @@
 {
   "name": "esrol-servers",
-  "description": "Later",
-  "version": "0.0.2",
+  "description": "A wrapper for creating single / multiple server types (http, udp, websocket) with or without node cluster.",
+  "version": "0.0.3",
   "main": "index.js",
   "author": "Ivaylo Ivanov <ivaylo.ivanov.ipi@gmail.com>",
   "repository": {
@@ -12,7 +12,18 @@
     "url": "https://github.com/esrol/esrol-servers"
   },
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "server",
+    "servers",
+    "http",
+    "https",
+    "udp",
+    "tcp",
+    "net",
+    "websocket",
+    "socket.io",
+    "cluster"
+  ],
   "engines": {
     "node": ">= 4.0.0"
   },
