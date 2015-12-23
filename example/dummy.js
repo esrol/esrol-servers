@@ -7,8 +7,8 @@ let tcpRouter = function(socket) {
   socket.write('hello');
   socket.end();
 };
-let udpRouter = function(msf, info) {
-  console.log(msf.toString());
+let udpRouter = function(msg, info) {
+  console.log(msg.toString());
 };
 let onHTTPServerListening = function() {
   console.log('http server is listening');

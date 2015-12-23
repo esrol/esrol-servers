@@ -286,7 +286,6 @@ Get all online workers
 $ npm install
 $ npm test
 ```
-  Note: *The test coverage is 100%, but most of the needed tests are dedicated to its child repositories, since this is a wrapper module*
 
 ## License
 
