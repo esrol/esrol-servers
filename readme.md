@@ -88,13 +88,17 @@ if (Servers.isMaster) {
 <dt><a href="#API">API</a></dt>
 <dd></dd>
 </dl>
+
 ## Members
+
 <dl>
 <dt><a href="#isMaster">isMaster</a></dt>
 <dd><p>the same as node cluster.isMaster</p>
 </dd>
 </dl>
+
 ## Methods
+
 <dl>
 <dt><a href="#createHTTPSServer">createHTTPSServer()</a></dt>
 <dd><p>Not implemented yet</p>
@@ -279,6 +283,15 @@ Retrieve the port the tcp server is currently listening on
 Get all online workers
 
 **Returns**: <code>array</code> - workers - array with all workers
+
+## Contriubtion
+
+Any contribution will be highly appreciated. Just make sure that:
+
+1. Your code works.  
+2. You have 100% successful tests coverage.  
+3. You have comments in your code.  
+4. Follows eslint config. Exceptions are possible where that make sense.  
 
 ## Tests
 
